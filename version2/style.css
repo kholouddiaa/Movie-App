@@ -1,168 +1,286 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
 :root {
-  --primary-color: #22254b;
-  --secondary-color: #373b69;
+  --primary-color: #0f172a;
+  --secondary-color: #1e293b;
+  --accent-color: #6366f1;
+  --text-light: #f1f5f9;
+  --text-muted: #94a3b8;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background-color: var(--primary-color);
+  background: linear-gradient(135deg, #0f172a, #1e1b4b);
   font-family: "Poppins", sans-serif;
-  margin: 0;
+  color: var(--text-light);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
+/* ================= HEADER ================= */
+
 header {
-  padding: 1rem;
+  padding: 1.5rem;
   display: flex;
-  justify-content: flex-end;
-  background-color: var(--secondary-color);
+  justify-content: center;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .search {
-  background-color: transparent;
-  border: 2px solid var(--primary-color);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50px;
-  font-family: inherit;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
-  color: #fff;
-  width: 30vw;
+  padding: 0.7rem 1.2rem;
+  color: white;
+  width: 350px;
+  transition: 0.3s ease;
 }
 
 .search::placeholder {
-  color: #7378c5;
+  color: var(--text-muted);
 }
 
 .search:focus {
   outline: none;
-  background-color: var(--primary-color);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
 }
+
+/* ================= MAIN GRID ================= */
 
 main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: auto;
 }
 
+/* ================= MOVIE CARD ================= */
+
 .movie {
-  width: 300px;
-  margin: 1rem;
-  background-color: var(--secondary-color);
-  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
-  position: relative;
+  background: var(--secondary-color);
+  border-radius: 18px;
   overflow: hidden;
-  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  transition: 0.4s ease;
+  position: relative;
 }
+
+.movie:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Poster */
 
 .movie img {
   width: 100%;
+  height: 420px;
+  object-fit: cover;
+  transition: 0.4s ease;
 }
+
+.movie:hover img {
+  transform: scale(1.05);
+}
+
+/* ================= MOVIE INFO ================= */
 
 .movie-info {
-  color: #eee;
+  padding: 1.2rem;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.2rem;
-  padding: 0.5rem 1rem 1rem;
-  letter-spacing: 0.5px;
+  flex-direction: column;
+  gap: 0.8rem;
 }
+
+/* Top row (title + rating) */
+
+.movie-info .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* Title */
 
 .movie-info h3 {
-  margin-top: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+  flex: 1;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
+
+/* Rating Badge */
 
 .movie-info span {
-  background-color: var(--primary-color);
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  font-weight: bold;
+  background: linear-gradient(135deg, #1f4068, #16213e);
+  padding: 0.3rem 0.7rem;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  min-width: 45px;
+  text-align: center;
 }
 
-.movie-info span.green {
-  color: lightgreen;
+/* Rating Colors */
+
+.green {
+  color: #22c55e;
 }
 
-.movie-info span.orange {
-  color: orange;
+.orange {
+  color: #f59e0b;
 }
 
-.movie-info span.red {
-  color: red;
+.red {
+  color: #ef4444;
 }
+
+/* ================= GENRES ================= */
 
 .genres {
-  margin: 5px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .genre {
-  display: inline-block;
-  background-color: #1f4068;
-  color: white;
-  padding: 3px 8px;
-  margin: 2px;
-  border-radius: 20px;
-  font-size: 12px;
+  background: linear-gradient(135deg, #334155, #1e293b);
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: 0.3s ease;
 }
 
+.genre:hover {
+  background: var(--accent-color);
+  transform: scale(1.05);
+}
+
+/* ================= OVERVIEW ================= */
+
 .overview {
-  background-color: #fff;
-  padding: 2rem;
   position: absolute;
-  left: 0;
   bottom: 0;
+  left: 0;
   right: 0;
+  background: rgba(15, 23, 42, 0.95);
+  padding: 1.5rem;
+  transform: translateY(100%);
+  transition: 0.4s ease;
   max-height: 100%;
-  transform: translateY(101%);
   overflow-y: auto;
-  transition: transform 0.3s ease-in;
 }
 
 .movie:hover .overview {
   transform: translateY(0);
 }
 
+/* Scrollbar */
+
+.overview::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overview::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 10px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .movie img {
+    height: 360px;
+  }
+
+  .search {
+    width: 100%;
+  }
+}
+/* ================= ROUNDED PILL PAGINATION ================= */
 #pagination {
-  display: block;
-  margin: 20px auto;
-  width: fit-content;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  margin: 4rem auto;
+  text-align: center;
 
-#pagination .pagination {
-  gap: 8px;
-}
 
-#pagination .page-link {
-  background-color: #373b69 !important;
-  border: none !important;
-  color: #fff !important;
-  padding: 8px 16px;
+}
+.pagination {
+  display: inline-flex;  
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 20px;
   border-radius: 50px;
+
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+
+  width: auto;          
+}
+
+
+/* Remove default bootstrap border */
+.page-item .page-link {
+  border: none;
+  border-radius: 50px !important;
+  padding: 8px 18px;
+  background: transparent;
+  color: #cbd5e1;
   font-weight: 500;
   transition: all 0.3s ease;
 }
 
-/* Hover */
-#pagination .page-link:hover {
-  background-color: #7378c5 !important;
-  color: #fff !important;
+/* Hover effect */
+.page-item .page-link:hover {
+  background: rgba(99, 102, 241, 0.2);
+  color: white;
   transform: translateY(-2px);
 }
 
-/* Active */
-#pagination .page-item.active .page-link {
-  background: linear-gradient(135deg, #7378c5, #4e54c8) !important;
-  color: #fff !important;
-  font-weight: bold;
-  box-shadow: 0 6px 18px rgba(115, 120, 197, 0.6);
+/* Active page */
+.page-item.active .page-link {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+  box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4);
 }
 
-/* Remove Bootstrap focus shadow */
-#pagination .page-link:focus {
-  box-shadow: none !important;
+/* Prev / Next style */
+.page-item:first-child .page-link,
+.page-item:last-child .page-link {
+  font-weight: 600;
+}
+
+/* Disabled */
+.page-item.disabled .page-link {
+  opacity: 0.4;
+  pointer-events: none;
 }
