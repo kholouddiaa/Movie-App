@@ -68,19 +68,27 @@ function showMovies(movies) {
     movieEl.classList.add("movie");
 
     movieEl.innerHTML = `
-      <img src="${IMG_PATH + poster_path}" alt="${title}">
-      <div class="movie-info">
-        <h3>${title}</h3>
+     <img src="${poster_path ? IMG_PATH + poster_path : 'https://via.placeholder.com/500x750?text=No+Image'}" alt="${title}">
+    <div class="movie-info">
 
-        <div class="genres">
-          ${getGenreNames(genre_ids)}
-        </div>
+  <div class="top">
+    <div>
+      <h3>${title}</h3>
+      <small style="color:#94a3b8;font-size:0.8rem;">
+        ${release_date ? release_date.split("-")[0] : ""}
+      </small>
+    </div>
 
-         <h3>${release_date.split("-")[0]}</h3>
-        <span class="${getClassByRate(vote_average)}">
-          ${vote_average.toFixed(1)}
-        </span>
-      </div>
+    <span class="${getClassByRate(vote_average)}">
+      ${vote_average.toFixed(1)}
+    </span>
+  </div>
+
+  <div class="genres">
+    ${getGenreNames(genre_ids)}
+  </div>
+
+</div>
 
       <div class="overview">
         <h3>Overview</h3>
